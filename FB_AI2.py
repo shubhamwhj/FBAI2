@@ -53,9 +53,10 @@ def eval_fitness(generation, config):
     global gen
     birdcount=0
     gen = gen+1
+    print(gen)
     for gid, genome in generation: 
-        genome.fitness = 0  
-        net = neat.nn.FeedForwardNetwork.create(genome, config) 
+        genome.fitness = 0  #initializing fitness of a genome to 0
+        net = neat.nn.FeedForwardNetwork.create(genome, config) #creating a neural network for a genome
         pipe1 = Pipe(400)
         bird = Bird() 
         score=0
@@ -94,8 +95,8 @@ def eval_fitness(generation, config):
                 state="over"
        
             
-            output = net.activate((bird.r.y, pipe1.gap))   
-            if output[0] > 0.5: 
+            output = net.activate((bird.r.y, pipe1.gap))   #Giving bird's y location and  gap's locaion as input to artificial neural network
+            if output[0] > 0.5: #Checking the output and making the bird flap()
                 bird.flap() 
                 
                
